@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Publicación Social Estática 1080×1080 — Programación y Desarrollo Web — Español</title>
+<style>
+  :root{
+    --cyan:#22d3ee; --violet:#a78bfa; --pink:#f472b6; --green:#34d399; --amber:#fbbf24;
+    --txt:#f1f5ff; --dim:rgba(241,245,255,.62);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:#05060c;
+    min-height:100vh;
+    display:flex;align-items:center;justify-content:center;
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  }
+
+  .stage{position:relative}
+
+  .post{
+    position:absolute;top:0;left:0;
+    width:1080px;height:1080px;
+    transform-origin:top left;
+    border-radius:48px;
+    overflow:hidden;
+    user-select:none;
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 60px 160px -60px rgba(34,211,238,.25), 0 40px 120px -40px rgba(0,0,0,.9);
+    background:linear-gradient(150deg,#070b18 0%,#0d1330 45%,#1b1040 100%);
+  }
+
+  .blob{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0}
+  .blob.b1{width:520px;height:520px;top:-160px;left:-160px;background:radial-gradient(circle,rgba(34,211,238,.45),transparent 70%)}
+  .blob.b2{width:560px;height:560px;bottom:-190px;right:-190px;background:radial-gradient(circle,rgba(167,139,250,.4),transparent 70%)}
+
+  .grid-overlay{
+    position:absolute;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+    background-size:64px 64px;
+    -webkit-mask-image:radial-gradient(circle at 50% 45%,#000 25%,transparent 78%);
+    mask-image:radial-gradient(circle at 50% 45%,#000 25%,transparent 78%);
+  }
+
+  .symbols{position:absolute;inset:0;z-index:1;pointer-events:none}
+  .sym{position:absolute;font-family:Consolas,"Cascadia Code",monospace;font-weight:700}
+
+  .inner{
+    position:absolute;inset:0;z-index:2;
+    display:flex;flex-direction:column;
+    padding:80px;
+    gap:22px;
+  }
+
+  .top{display:flex;align-items:center;justify-content:space-between}
+  .logo{
+    width:92px;height:92px;border-radius:26px;display:grid;place-items:center;
+    font:700 34px/1 Consolas,monospace;color:#071018;
+    background:linear-gradient(135deg,var(--cyan),var(--violet));
+    box-shadow:0 18px 50px -18px rgba(34,211,238,.65);
+  }
+  .lang{display:flex;padding:7px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+  .lang button{
+    border:0;background:transparent;
+    color:var(--dim);padding:14px 28px;border-radius:999px;
+    font:700 24px/1 "Segoe UI",system-ui,sans-serif;letter-spacing:.06em;
+  }
+  .lang button.active{background:linear-gradient(135deg,var(--cyan),var(--violet));color:#071018}
+
+  h1{font-size:76px;line-height:1.15;font-weight:800;letter-spacing:-.02em}
+  h1 span{display:block;color:var(--txt)}
+  h1 .accent{
+    background:linear-gradient(90deg,var(--cyan),var(--violet) 55%,var(--pink));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+
+  .code{
+    border-radius:30px;padding:30px 40px;
+    background:rgba(5,8,20,.74);
+    border:1px solid rgba(255,255,255,.09);
+    box-shadow:0 30px 80px -36px rgba(0,0,0,.85), inset 0 0 60px rgba(34,211,238,.05);
+  }
+  .code-head{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+  .wd{width:14px;height:14px;border-radius:50%}
+  .wd.r{background:#ff5f57}.wd.y{background:#febc2e}.wd.g{background:#28c840}
+  .code-name{margin-left:auto;font:600 24px/1 Consolas,monospace;color:rgba(241,245,255,.45);letter-spacing:.08em}
+  .code pre{
+    font:500 28px/1.5 Consolas,"Cascadia Code",monospace;
+    color:#dbe7ff;white-space:pre;
+  }
+  .kw{color:var(--violet)}
+  .var{color:var(--cyan)}
+  .punc{color:rgba(219,231,255,.55)}
+  .prop{color:#93c5fd}
+  .str{color:var(--green)}
+  .fn{color:var(--amber)}
+  .cursor{
+    display:inline-block;width:16px;height:34px;border-radius:4px;
+    background:var(--cyan);vertical-align:-7px;
+  }
+
+  .strip{font-size:27px;font-weight:600;color:var(--dim);text-align:center;line-height:1.4}
+
+  .cta-wrap{margin-top:auto;display:flex;flex-direction:column;gap:22px}
+  .cta{
+    display:flex;align-items:center;justify-content:center;gap:20px;
+    width:100%;padding:36px;border:0;border-radius:30px;cursor:pointer;
+    font:700 42px/1 "Segoe UI",system-ui,sans-serif;color:#071018;
+    background:linear-gradient(90deg,var(--cyan),var(--violet),var(--cyan));
+    box-shadow:0 24px 70px -24px rgba(34,211,238,.55);
+  }
+  .cta svg{width:44px;height:44px}
+  .sub{text-align:center;font-size:28px;font-weight:600;color:var(--dim);line-height:1.2}
+
+  .foot{
+    text-align:center;font-size:22px;font-weight:700;
+    letter-spacing:.18em;color:rgba(241,245,255,.38);
+  }
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+  <div class="post" id="post" aria-label="Publicación social estática — servicios de programación y desarrollo web">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="grid-overlay"></div>
+
+    <div class="symbols" aria-hidden="true">
+      <span class="sym" style="top:150px; right:90px;  font-size:44px; color:#22d3ee; opacity:.22;">&lt;/&gt;</span>
+      <span class="sym" style="top:420px; left:60px;   font-size:40px; color:#a78bfa; opacity:.2;">{ }</span>
+      <span class="sym" style="bottom:250px; right:70px; font-size:40px; color:#34d399; opacity:.2;">&lt;div&gt;</span>
+      <span class="sym" style="top:260px; left:130px;  font-size:38px; color:#fbbf24; opacity:.2;">;</span>
+    </div>
+
+    <div class="inner">
+      <div class="top">
+        <div class="logo">&lt;/&gt;</div>
+        <div class="lang" aria-label="Idioma"><button class="lang-btn active" type="button">ES</button></div>
+      </div>
+
+      <h1>
+        <span>Convertimos ideas en</span>
+        <span class="accent">código real.</span>
+      </h1>
+
+      <div class="code">
+        <div class="code-head">
+          <span class="wd r"></span><span class="wd y"></span><span class="wd g"></span>
+          <span class="code-name">app.js</span>
+        </div>
+        <pre><span class="kw">const </span><span class="var">proyecto</span><span class="punc"> = {</span>
+<span class="prop">  idea</span><span class="punc">: </span><span class="str">"tuya"</span><span class="punc">,</span>
+<span class="prop">  speed</span><span class="punc">: </span><span class="str">"rápido"</span>
+<span class="punc">};</span>
+<span class="fn">lanzar</span><span class="punc">(</span><span class="var">proyecto</span><span class="punc">);</span><span class="cursor"></span></pre>
+      </div>
+
+      <div class="strip">Sitios web &middot; Apps móviles &middot; Tiendas online &middot; SEO y velocidad</div>
+
+      <div class="cta-wrap">
+        <button class="cta" type="button">
+          <span>Empieza tu proyecto</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <div class="sub">Cotización gratis en 24 horas</div>
+      </div>
+
+      <div class="foot">PROGRAMACIÓN Y DESARROLLO WEB</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const post = document.getElementById('post');
+  const stage = document.getElementById('stage');
+  const fullSize = new URLSearchParams(location.search).has('full');
+
+  function fit(){
+    if (fullSize){
+      document.body.style.justifyContent = 'flex-start';
+      document.body.style.alignItems = 'flex-start';
+      post.style.transform = 'none';
+      stage.style.width = '1080px';
+      stage.style.height = '1080px';
+      return;
+    }
+    const s = Math.min(window.innerWidth / 1080, (window.innerHeight - 32) / 1080);
+    post.style.transform = 'scale(' + s + ')';
+    stage.style.width = Math.round(1080 * s) + 'px';
+    stage.style.height = Math.round(1080 * s) + 'px';
+  }
+  window.addEventListener('resize', fit);
+  fit();
+</script>
+</body>
+</html>
