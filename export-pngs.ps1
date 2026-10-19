@@ -25,7 +25,9 @@ $targets = @(
   @{ File = 'story-en.html';  W = 1080; H = 1920; Query = '?full=1&still=1';  Out = 'story-en-1080x1920.png' },
   @{ File = 'story-es.html';  W = 1080; H = 1920; Query = '?full=1&still=1';  Out = 'story-es-1080x1920.png' },
   @{ File = 'post-en.html';   W = 1080; H = 1080; Query = '?full=1';          Out = 'post-en-1080x1080.png' },
-  @{ File = 'post-es.html';   W = 1080; H = 1080; Query = '?full=1';          Out = 'post-es-1080x1080.png' }
+  @{ File = 'post-es.html';   W = 1080; H = 1080; Query = '?full=1';          Out = 'post-es-1080x1080.png' },
+  @{ File = 'og.html';        W = 1200; H = 628;  Query = '?full=1';          Out = 'og-en-1200x628.png' },
+  @{ File = 'og.html';        W = 1200; H = 628;  Query = '?full=1&lang=es';  Out = 'og-es-1200x628.png' }
 )
 
 Add-Type -AssemblyName System.Drawing

@@ -4,7 +4,21 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="Programming and web development studio — websites, mobile apps, e-commerce, and SEO. Free quote in 24 hours." />
-<title>YourStudio — Programming &amp; Web Development</title>
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Harley Vásquez" />
+<meta property="og:title" content="Harley Vásquez — Programming &amp; Web Development" />
+<meta property="og:description" content="Websites, mobile apps, and online stores — designed, built, and shipped. Free quote in 24 hours." />
+<meta property="og:url" content="https://dev-banner-kit.vercel.app/" />
+<meta property="og:image" content="https://dev-banner-kit.vercel.app/exports/og-en-1200x628.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="628" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="es_ES" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Harley Vásquez — Programming &amp; Web Development" />
+<meta name="twitter:description" content="Websites, mobile apps, and online stores — designed, built, and shipped. Free quote in 24 hours." />
+<meta name="twitter:image" content="https://dev-banner-kit.vercel.app/exports/og-en-1200x628.png" />
+<title>Harley Vásquez — Programming &amp; Web Development</title>
 <style>
   :root{
     --cyan:#22d3ee; --violet:#a78bfa; --pink:#f472b6; --green:#34d399; --amber:#fbbf24;
@@ -198,6 +212,9 @@
   /* footer */
   .footer{border-top:1px solid rgba(255,255,255,.07);padding:34px 0;margin-top:40px}
   .footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:13.5px;color:var(--dim)}
+  .footer-contact{display:flex;gap:20px;flex-wrap:wrap}
+  .footer a{color:var(--cyan);text-decoration:none;font-weight:600}
+  .footer a:hover{text-decoration:underline}
 
   /* reveal */
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.3,1)}
@@ -218,7 +235,7 @@
 
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="#top"><span class="logo">&lt;/&gt;</span>YourStudio</a>
+    <a class="brand" href="#top"><span class="logo">&lt;/&gt;</span>Harley Vásquez</a>
     <nav class="nav-links">
       <a href="#services" data-en="Services" data-es="Servicios">Services</a>
       <a href="#formats" data-en="Formats" data-es="Formatos">Formats</a>
@@ -331,7 +348,7 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en="Fixed quote before we start" data-es="Cotización fija antes de empezar">Fixed quote before we start</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-en="You own everything we build" data-es="Todo lo que construimos es tuyo">You own everything we build</span></li>
           </ul>
-          <p class="mail"><span data-en="Prefer email? " data-es="¿Prefieres escribir? ">Prefer email? </span><a href="mailto:hola@yourstudio.dev">hola@yourstudio.dev</a></p>
+          <p class="mail"><span data-en="Prefer email? " data-es="¿Prefieres escribir? ">Prefer email? </span><a href="mailto:harleyvasquez@icloud.com">harleyvasquez@icloud.com</a></p>
         </div>
 
         <div class="form-card reveal">
@@ -365,14 +382,14 @@
               <span data-en="Send message" data-es="Enviar mensaje">Send message</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </button>
-            <p class="form-error" id="formError" hidden data-en="Something went wrong — email us at hola@yourstudio.dev." data-es="Algo salió mal — escríbenos a hola@yourstudio.dev.">Something went wrong — email us at hola@yourstudio.dev.</p>
+            <p class="form-error" id="formError" hidden data-en="Something went wrong — email us at harleyvasquez@icloud.com." data-es="Algo salió mal — escríbenos a harleyvasquez@icloud.com.">Something went wrong — email us at harleyvasquez@icloud.com.</p>
             <p class="form-note" data-en="We reply within 24 hours — no spam, ever." data-es="Respondemos en menos de 24 horas — sin spam, nunca.">We reply within 24 hours — no spam, ever.</p>
           </form>
 
           <div class="form-success" id="formSuccess" hidden>
             <div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
             <p class="success-title"><span data-en="Thanks" data-es="¡Gracias">Thanks</span>, <strong id="succName"></strong>!</p>
-            <p class="success-msg" data-en="We'll get back to you within 24 hours. Meanwhile, reach us anytime at hola@yourstudio.dev." data-es="Te responderemos en menos de 24 horas. Mientras tanto, escríbenos cuando quieras a hola@yourstudio.dev.">We'll get back to you within 24 hours. Meanwhile, reach us anytime at hola@yourstudio.dev.</p>
+            <p class="success-msg" data-en="We'll get back to you within 24 hours. Meanwhile, reach us anytime at harleyvasquez@icloud.com." data-es="Te responderemos en menos de 24 horas. Mientras tanto, escríbenos cuando quieras a harleyvasquez@icloud.com.">We'll get back to you within 24 hours. Meanwhile, reach us anytime at harleyvasquez@icloud.com.</p>
             <button class="btn ghost" type="button" id="againBtn">
               <span data-en="Send another message" data-es="Enviar otro mensaje">Send another message</span>
             </button>
@@ -386,8 +403,11 @@
 
 <footer class="footer">
   <div class="wrap">
-    <span>© 2026 YourStudio</span>
-    <span data-en="We turn ideas into working code." data-es="Convertimos tus ideas en código real.">We turn ideas into working code.</span>
+    <span>© 2026 Harley Vásquez — <span data-en="Programmer · Web Developer" data-es="Programador · Desarrollador Web">Programmer · Web Developer</span></span>
+    <span class="footer-contact">
+      <a href="mailto:harleyvasquez@icloud.com">harleyvasquez@icloud.com</a>
+      <a href="https://harleyvasquez.vercel.app" target="_blank" rel="noopener">harleyvasquez.vercel.app</a>
+    </span>
   </div>
 </footer>
 
@@ -469,7 +489,8 @@
     success.hidden = true;
   });
 
-  applyLang('en');
+  const initialLang = new URLSearchParams(location.search).get('lang') || (/\/es\/?$/.test(location.pathname) ? 'es' : 'en');
+  applyLang(initialLang === 'es' ? 'es' : 'en');
 </script>
 </body>
 </html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Link Preview (OG) 1200×628 — Programming &amp; Web Development</title>
+<style>
+  :root{
+    --cyan:#22d3ee; --violet:#a78bfa; --pink:#f472b6; --green:#34d399; --amber:#fbbf24;
+    --txt:#f1f5ff; --dim:rgba(241,245,255,.62);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:#05060c;
+    min-height:100vh;
+    display:flex;align-items:center;justify-content:center;
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  }
+  body.lang-en .es{display:none !important}
+  body.lang-es .en{display:none !important}
+
+  .stage{position:relative}
+
+  .og{
+    position:absolute;top:0;left:0;
+    width:1200px;height:628px;
+    transform-origin:top left;
+    overflow:hidden;
+    user-select:none;
+    background:linear-gradient(135deg,#070b18 0%,#0d1330 50%,#1b1040 100%);
+  }
+
+  .blob{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:0}
+  .blob.b1{width:460px;height:460px;top:-150px;left:-130px;background:radial-gradient(circle,rgba(34,211,238,.45),transparent 70%)}
+  .blob.b2{width:500px;height:500px;bottom:-180px;right:-150px;background:radial-gradient(circle,rgba(167,139,250,.4),transparent 70%)}
+  .blob.b3{width:340px;height:340px;top:-90px;right:220px;background:radial-gradient(circle,rgba(244,114,182,.22),transparent 70%)}
+
+  .grid-overlay{
+    position:absolute;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+    background-size:56px 56px;
+    -webkit-mask-image:radial-gradient(circle at 45% 50%,#000 30%,transparent 85%);
+    mask-image:radial-gradient(circle at 45% 50%,#000 30%,transparent 85%);
+  }
+
+  .symbols{position:absolute;inset:0;z-index:1;pointer-events:none}
+  .sym{position:absolute;font-family:Consolas,"Cascadia Code",monospace;font-weight:700}
+
+  .inner{
+    position:absolute;inset:0;z-index:2;
+    display:flex;flex-direction:column;
+    padding:48px 56px;
+    gap:22px;
+  }
+
+  .top{display:flex;align-items:center;justify-content:space-between}
+  .brand-block{display:flex;align-items:center;gap:18px}
+  .logo{
+    width:64px;height:64px;border-radius:18px;display:grid;place-items:center;
+    font:700 24px/1 Consolas,monospace;color:#071018;
+    background:linear-gradient(135deg,var(--cyan),var(--violet));
+    box-shadow:0 14px 40px -14px rgba(34,211,238,.65);
+  }
+  .brand-name{font-size:27px;font-weight:800;letter-spacing:.01em;color:var(--txt)}
+  .brand-sub{font-size:12.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(241,245,255,.45);margin-top:5px}
+  .lang{display:flex;padding:5px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+  .lang button{
+    border:0;background:transparent;
+    color:var(--dim);padding:10px 20px;border-radius:999px;
+    font:700 16px/1 "Segoe UI",system-ui,sans-serif;letter-spacing:.06em;
+  }
+  body.lang-en .lang .b-en, body.lang-es .lang .b-es{background:linear-gradient(135deg,var(--cyan),var(--violet));color:#071018}
+
+  .mid{flex:1;display:flex;align-items:center;gap:44px;min-height:0}
+
+  .left{flex:1;display:flex;flex-direction:column;gap:20px;min-width:0}
+  h1{font-size:52px;line-height:1.14;font-weight:800;letter-spacing:-.02em}
+  h1 .l{display:block;color:var(--txt)}
+  h1 .accent{
+    background:linear-gradient(90deg,var(--cyan),var(--violet) 55%,var(--pink));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .strip{font-size:20px;font-weight:600;color:var(--dim)}
+
+  .code{
+    flex:none;width:512px;
+    border-radius:24px;padding:26px 30px;
+    background:rgba(5,8,20,.74);
+    border:1px solid rgba(255,255,255,.09);
+    box-shadow:0 30px 80px -36px rgba(0,0,0,.85), inset 0 0 60px rgba(34,211,238,.05);
+  }
+  .code-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .wd{width:12px;height:12px;border-radius:50%}
+  .wd.r{background:#ff5f57}.wd.y{background:#febc2e}.wd.g{background:#28c840}
+  .code-name{margin-left:auto;font:600 18px/1 Consolas,monospace;color:rgba(241,245,255,.45);letter-spacing:.08em}
+  .code pre{
+    font:500 21px/1.5 Consolas,"Cascadia Code",monospace;
+    color:#dbe7ff;white-space:pre;
+  }
+  .kw{color:var(--violet)}
+  .var{color:var(--cyan)}
+  .punc{color:rgba(219,231,255,.55)}
+  .prop{color:#93c5fd}
+  .str{color:var(--green)}
+  .fn{color:var(--amber)}
+  .cursor{
+    display:inline-block;width:13px;height:26px;border-radius:4px;
+    background:var(--cyan);vertical-align:-4px;
+  }
+
+  .bottom{display:flex;align-items:center;justify-content:space-between}
+  .pill{
+    display:inline-flex;align-items:center;gap:12px;
+    padding:13px 24px;border-radius:999px;
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+    font-size:19px;font-weight:700;color:var(--txt);
+  }
+  .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--violet));box-shadow:0 0 14px rgba(34,211,238,.8)}
+  .free{font-size:19px;font-weight:600;color:var(--dim)}
+</style>
+</head>
+<body class="lang-en">
+
+<div class="stage" id="stage">
+  <div class="og" id="og" aria-label="Link preview image — programming and web development services">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <div class="grid-overlay"></div>
+
+    <div class="symbols" aria-hidden="true">
+      <span class="sym" style="top:118px; right:88px;  font-size:34px; color:#22d3ee; opacity:.2;">&lt;/&gt;</span>
+      <span class="sym" style="bottom:118px; left:64px; font-size:30px; color:#a78bfa; opacity:.2;">{ }</span>
+      <span class="sym" style="top:330px; left:40px;  font-size:28px; color:#34d399; opacity:.16;">&lt;div&gt;</span>
+      <span class="sym" style="bottom:180px; right:210px; font-size:28px; color:#fbbf24; opacity:.16;">;</span>
+    </div>
+
+    <div class="inner">
+      <div class="top">
+        <div class="brand-block">
+          <div class="logo">&lt;/&gt;</div>
+          <div>
+            <div class="brand-name">Harley Vásquez</div>
+            <div class="brand-sub en">Programmer — Web Developer</div>
+            <div class="brand-sub es">Programador — Desarrollador Web</div>
+          </div>
+        </div>
+        <div class="lang" aria-label="Language">
+          <button class="b-en" type="button">EN</button>
+          <button class="b-es" type="button">ES</button>
+        </div>
+      </div>
+
+      <div class="mid">
+        <div class="left">
+          <h1>
+            <span class="l en">We turn ideas into</span>
+            <span class="l en accent">working code.</span>
+            <span class="l es">Convertimos ideas</span>
+            <span class="l es accent">en código real.</span>
+          </h1>
+          <div class="strip en">Websites &middot; Mobile apps &middot; E-commerce &middot; SEO &amp; speed</div>
+          <div class="strip es">Webs &middot; Apps móviles &middot; E-commerce &middot; SEO y velocidad</div>
+        </div>
+        <div class="code">
+          <div class="code-head">
+            <span class="wd r"></span><span class="wd y"></span><span class="wd g"></span>
+            <span class="code-name">app.js</span>
+          </div>
+          <pre><span class="kw">const </span><span class="var">project</span><span class="punc"> = {</span>
+<span class="prop">  idea</span><span class="punc">: </span><span class="str">"yours"</span><span class="punc">,</span>
+<span class="prop">  speed</span><span class="punc">: </span><span class="str">"fast"</span>
+<span class="punc">};</span>
+<span class="fn">ship</span><span class="punc">(</span><span class="var">project</span><span class="punc">);</span><span class="cursor"></span></pre>
+        </div>
+      </div>
+
+      <div class="bottom">
+        <div class="pill"><span class="dot"></span><span class="en">harleyvasquez.vercel.app</span><span class="es">harleyvasquez.vercel.app/es</span></div>
+        <div class="free en">Free quote in 24 hours</div>
+        <div class="free es">Cotización gratis en 24 horas</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const og = document.getElementById('og');
+  const stage = document.getElementById('stage');
+  const params = new URLSearchParams(location.search);
+  const fullSize = params.has('full');
+  if (params.get('lang') === 'es'){ document.body.classList.replace('lang-en','lang-es'); }
+
+  function fit(){
+    if (fullSize){
+      document.body.style.justifyContent = 'flex-start';
+      document.body.style.alignItems = 'flex-start';
+      og.style.transform = 'none';
+      stage.style.width = '1200px';
+      stage.style.height = '628px';
+      return;
+    }
+    const s = Math.min(window.innerWidth / 1200, (window.innerHeight - 32) / 628);
+    og.style.transform = 'scale(' + s + ')';
+    stage.style.width = Math.round(1200 * s) + 'px';
+    stage.style.height = Math.round(628 * s) + 'px';
+  }
+  window.addEventListener('resize', fit);
+  fit();
+</script>
+</body>
+</html>

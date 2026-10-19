@@ -57,6 +57,9 @@
   }
 
   .top{display:flex;align-items:center;justify-content:space-between}
+  .brand-block{display:flex;align-items:center;gap:24px}
+  .brand-name{font-size:36px;font-weight:800;letter-spacing:.01em;line-height:1.15}
+  .brand-sub{font-size:24px;font-weight:600;color:var(--dim);letter-spacing:.02em}
   .logo{
     width:92px;height:92px;border-radius:26px;display:grid;place-items:center;
     font:700 34px/1 Consolas,monospace;color:#071018;
@@ -139,7 +142,13 @@
 
     <div class="inner">
       <div class="top">
-        <div class="logo">&lt;/&gt;</div>
+        <div class="brand-block">
+          <div class="logo">&lt;/&gt;</div>
+          <div>
+            <div class="brand-name">Harley Vásquez</div>
+            <div class="brand-sub">Programmer — Web Developer</div>
+          </div>
+        </div>
         <div class="lang" aria-label="Language"><button class="lang-btn active" type="button">EN</button></div>
       </div>
 
@@ -170,7 +179,7 @@
         <div class="sub">Free quote in 24 hours</div>
       </div>
 
-      <div class="foot">PROGRAMMING &amp; WEB DEVELOPMENT</div>
+      <div class="foot">harleyvasquez.vercel.app</div>
     </div>
   </div>
 </div>

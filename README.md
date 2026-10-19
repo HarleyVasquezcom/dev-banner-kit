@@ -13,14 +13,15 @@ Animated, bilingual (English / Spanish) marketing kit for a programming and web 
 | `banner-en.html` / `banner-es.html` | 300x600 animated banners, single language |
 | `story.html` | 1080x1920 animated Instagram story, bilingual |
 | `story-en.html` / `story-es.html` | 1080x1920 animated stories, single language |
-| `post-en.html` / `post-es.html` | 1080x1080 static (non-animated) social posts |
+| `post-en.html` / `post-es.html` | 1080x1080 static (non-animated) social posts, with brand name, role, and domain |
+| `og.html` | 1200x628 link-preview (Open Graph) image, English or Spanish via `?lang=es` |
 | `social-copy.md` | Ready-to-post captions: Instagram/Facebook, story overlays, LinkedIn, X, taglines, bios, hashtags (EN + ES) |
-| `exports/` | Rendered PNGs at full resolution (300x600, 1080x1920, 1080x1080) |
+| `exports/` | Rendered PNGs at full resolution (300x600, 1080x1920, 1080x1080, 1200x628) |
 | `brand.json` | Brand name, domains, email, and 5-color palette - single source of truth |
 | `reskin.ps1` | One command to rebrand everything: names, contacts, and colors |
 | `build-variants.ps1` | Regenerates the single-language banners/stories from the bilingual sources |
 | `export-pngs.ps1` | Renders all PNGs via headless Edge/Chrome into `exports/` |
-| `vercel.json` | Vercel config: serves `landing.html` at the site root |
+| `vercel.json` | Vercel config: serves `landing.html` at the site root and at `/es` (Spanish) |
 
 ## Preview locally
 
@@ -42,7 +43,8 @@ npx serve .
 | `?embed=1` | banner EN/ES | Hides the caption - fit for iframes |
 | `?still=1` | banner, story | Renders the code block fully typed, no animation |
 | `?flat=1` | banner EN/ES | Anchors content to the top-left (used by the export script) |
-| `?full=1` | story, post | Exact-pixel layout for screenshot capture |
+| `?full=1` | story, post, og | Exact-pixel layout for screenshot capture |
+| `?lang=es` | og | Renders the preview card in Spanish |
 
 ## Reskin (rebrand in one command)
 
@@ -76,7 +78,7 @@ vercel deploy --prod
 
 - GitHub: https://github.com/HarleyVasquezcom/dev-banner-kit
 
-`vercel.json` rewrites `/` to `landing.html`; every banner, story, and post is also directly reachable by path.
+`vercel.json` rewrites `/` and `/es` to `landing.html`; every banner, story, and post is also directly reachable by path. The landing page carries Open Graph and Twitter card meta tags using `exports/og-en-1200x628.png` as the preview image.
 
 ## Regenerate single-language variants
 
