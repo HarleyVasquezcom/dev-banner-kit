@@ -9,7 +9,7 @@ Animated, bilingual (English / Spanish) marketing kit for a programming and web 
 | File | Description |
 | --- | --- |
 | `landing.html` | Bilingual responsive landing page: hero with embedded live banner, services, formats gallery, contact form, footer. Served at `/` on Vercel. |
-| `index.html` | 300x600 animated mobile banner, bilingual - auto-switches EN/ES every 6 seconds |
+| `banner.html` | 300x600 animated mobile banner, bilingual - auto-switches EN/ES every 6 seconds |
 | `banner-en.html` / `banner-es.html` | 300x600 animated banners, single language |
 | `story.html` | 1080x1920 animated Instagram story, bilingual |
 | `story-en.html` / `story-es.html` | 1080x1920 animated stories, single language |
@@ -86,7 +86,7 @@ vercel deploy --prod
 powershell -ExecutionPolicy Bypass -File build-variants.ps1
 ```
 
-Run this after editing the bilingual `index.html` or `story.html` so the single-language variants stay in sync.
+Run this after editing the bilingual `banner.html` or `story.html` so the single-language variants stay in sync.
 
 ## Resumen (espanol)
 

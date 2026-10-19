@@ -59,6 +59,8 @@ $fitStory = @'
 
   function fit(){
     if (fullSize){
+      document.body.style.justifyContent = 'flex-start';
+      document.body.style.alignItems = 'flex-start';
       story.style.transform = 'none';
       stage.style.width = '1080px';
       stage.style.height = '1920px';
@@ -73,9 +75,22 @@ $fitStory = @'
   fit();
 '@
 
-$typeCore = @'
+$typeHead = @'
   const typed = document.getElementById('typed');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+'@
+
+$bannerParams = @'
+  if (new URLSearchParams(location.search).has('embed')){
+    document.querySelector('.hint').style.display = 'none';
+  }
+  if (new URLSearchParams(location.search).has('flat')){
+    document.body.style.justifyContent = 'flex-start';
+    document.body.style.alignItems = 'flex-start';
+  }
+'@
+
+$typeBody = @'
   const cursorEl = document.createElement('span');
   cursorEl.className = 'cursor';
   let typeTimer = null;
@@ -100,6 +115,21 @@ $typeCore = @'
     qi = 0;
     typed.innerHTML = '';
     typed.appendChild(cursorEl);
+    if (new URLSearchParams(location.search).has('still')){
+      while (qi < queue.length){
+        const [ch, cls] = queue[qi++];
+        if (ch === '\n'){
+          typed.appendChild(document.createTextNode('\n'));
+        } else {
+          const s = document.createElement('span');
+          s.className = cls;
+          s.textContent = ch;
+          typed.appendChild(s);
+        }
+      }
+      typed.appendChild(cursorEl);
+      return;
+    }
     const speed = reduce ? 0 : 22;
     typeTimer = setInterval(() => {
       if (qi >= queue.length){ clearInterval(typeTimer); return; }
@@ -119,10 +149,12 @@ $typeCore = @'
   startTyping();
 '@
 
-function New-Script($snippet, $withFit){
+function New-Script($snippet, $withFit, $withBannerParams){
   $s = "<script>`n" + $snippet
   if ($withFit) { $s += $fitStory }
-  $s += $typeCore + "</script>"
+  $s += $typeHead + "`n"
+  if ($withBannerParams) { $s += $bannerParams + "`n" }
+  $s += $typeBody + "</script>"
   return $s
 }
 
@@ -152,13 +184,13 @@ function Convert-Variant($baseFile, $outFile, $lang, $isStory){
   if ($isStory -and $lang -eq 'es'){ $snip = $snippetStoryEs }
   if (-not $isStory -and $lang -eq 'es'){ $snip = $snippetMobileEs }
 
-  $c = $c -replace '(?s)<script>.*?</script>', (New-Script $snip $isStory)
+  $c = $c -replace '(?s)<script>.*?</script>', (New-Script $snip $isStory (-not $isStory))
 
   Write-Utf8 (Join-Path $dir $outFile) $c
   Write-Output ("wrote " + $outFile)
 }
 
-Convert-Variant 'index.html' 'banner-en.html' 'en' $false
-Convert-Variant 'index.html' 'banner-es.html' 'es' $false
+Convert-Variant 'banner.html' 'banner-en.html' 'en' $false
+Convert-Variant 'banner.html' 'banner-es.html' 'es' $false
 Convert-Variant 'story.html' 'story-en.html' 'en' $true
 Convert-Variant 'story.html' 'story-es.html' 'es' $true
